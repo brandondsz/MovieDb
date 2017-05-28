@@ -1,0 +1,10 @@
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\obj\Debug\MovieDb.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\MovieDb.DataAccess.dll.config
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\MovieDb.DataAccess.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\MovieDb.DataAccess.pdb
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\obj\Debug\MovieDb.DataAccess.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.DataAccess\obj\Debug\MovieDb.DataAccess.pdb

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MovieDb</title>
+     @Scripts.Render("~/bundles/modernizr")
+	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+	    @*@Scripts.Render("~/bundles/jquery")*@
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.dataviz.default.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.aspnetmvc.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Styles.Render("~/bundles/kendoCss")
+    @Scripts.Render("~/bundles/kendoJs")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/errorhandler")*@
+	@*<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>*@
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("MovieDb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+
+    </div>
+    <div id="custom-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 id="custom-modal-title" class="modal-title"></h2>
+                </div>
+                <div id="custom-modal-body" class="modal-body"></div>               
+            </div>
+        </div>
+    </div>
+    <div id="alert-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 id="alert-modal-title" class="modal-title"></h2>
+                </div>
+                <div id="alert-modal-body" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/movieDb")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

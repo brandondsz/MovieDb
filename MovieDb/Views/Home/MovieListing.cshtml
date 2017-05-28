@@ -1,0 +1,65 @@
+﻿@model MovieDb.ViewModels.MovieListViewModel
+@using MovieDb.Helpers
+
+@{
+    ViewBag.Title = "MovieListing";
+}
+
+<h2>Latest Movies</h2>
+@Html.Hidden("DisplayMovieUrl", Url.Action("DisplayMovie", "Home"))
+@Scripts.Render("~/bundles/movieDbMovie")
+
+
+<hr />
+@(Html.Kendo().Grid<MovieDb.ViewModels.MovieListViewModel>()
+    .Name("grid")
+    .ToolBar(toolbar =>
+                        {
+                            toolbar.Template(@<text>
+                                    <b>Search for movies:</b> 
+                                        @(Html.Kendo().AutoComplete()
+                                          .Name("movieSearch")
+                                          .DataTextField("Text")
+                                          .Filter("contains")
+                                          .MinLength(2)                                                                                
+                                          .DataSource(source =>
+                                          {
+                                              source.Read(read =>
+                                              {
+                                                  read.Action("GetMovies", "Home")
+                                                      .Data("onAdditionalData");
+
+                                              })
+                                              .ServerFiltering(true);
+                                          }).Events(e => e.Select("onMovieSelect"))
+                                        )
+                                        @Html.ActionLink("Create New", "CreateEditMovie", "Home", new { @class = "btn btn-default" })
+                                    
+                            </text>);
+                        })
+                                                .HtmlAttributes(new { style = "height:400px;" })
+                                                .Columns(columns =>
+                                                {
+                                                    columns.Template(e => { }).ClientTemplate(" ").Width(70).Title("Picture");
+                                                    columns.Bound(e => e.Title).Width(400).Title("Details");
+                                                })
+                                                .ClientRowTemplate(
+                                                            "<tr data-uid='#: MovieId #'>" +
+                                                            "<td class='photo'>" +
+                                                               "<img src='" + Url.Content("~/Uploads/MoviePosters/") + "#:data.Poster#' alt='#: data.Poster #' height='150' width='150'/>" +
+                                                            "</td>" +
+                                                            "<td class='details'>" +
+                                                                    "<h4><b>#= Title #</b>(#:ReleaseYear#)</h4>" +
+                                                                    "<div class='plot'>Plot : #:Plot #</div>" +
+                                                                                        "<div class='actors-section'>Actors :#= Actors #</div>" +
+                                                                            "<div class='producer-section'>Producer :#= Producer #</div>" +
+                                                            "</td>" +
+                                                         "</tr>"
+                                                )
+                                                        .DataSource(dataSource => dataSource
+                                                        .Ajax()
+                                                        .Read(read => read.Action("QueryLatestMovies", "Home"))
+                                                    )
+                                                        .Scrollable().Pageable(p => p.Refresh(true)
+                                                                                    .PageSizes(true)
+                                                                            .ButtonCount(5)))

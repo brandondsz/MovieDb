@@ -1,0 +1,35 @@
+﻿@model MovieDb.ViewModels.ProducerViewModel
+
+@{
+    ViewBag.Title = "DisplayProducer";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <hr />
+
+    <div class="col-md-12 form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10" style="word-wrap:break-word">
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10" style="word-wrap:break-word">
+                @Html.DisplayFor(model => model.Sex)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10" style="word-wrap:break-word">
+                @Html.DisplayFor(model => model.Bio)
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "CreateEdit", new { producerId = Model.RowId })
+</p>

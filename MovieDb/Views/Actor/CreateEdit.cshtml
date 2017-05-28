@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "CreateEdit";
+}
+
+<h2>CreateEdit</h2>
+@Scripts.Render("~/bundles/movieDbActor")
+@Html.Hidden("DisplayActorUrl",Url.Action("DisplayActor","Actor"))
+@{Html.RenderAction("CreateEditActor", "Actor", new { actorId = ViewBag.ActorId});}

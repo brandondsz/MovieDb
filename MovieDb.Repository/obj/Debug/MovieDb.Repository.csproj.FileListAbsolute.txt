@@ -1,0 +1,12 @@
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\obj\Debug\MovieDb.Repository.csprojResolveAssemblyReference.cache
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\MovieDb.Repository.dll.config
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\MovieDb.Repository.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\MovieDb.Repository.pdb
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\EntityFramework.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\MovieDb.DataAccess.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\MovieDb.DataAccess.pdb
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\EntityFramework.xml
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\obj\Debug\MovieDb.Repository.dll
+C:\Users\brandon\Documents\Visual Studio 2013\Projects\MovieDb\MovieDb.Repository\obj\Debug\MovieDb.Repository.pdb

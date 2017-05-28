@@ -1,0 +1,48 @@
+﻿@model MovieDb.ViewModels.MovieViewModel
+@using MovieDb.Helpers
+@{
+    ViewBag.Title = "DisplayMovie";
+}
+
+<h2>
+    <b>@Html.DisplayFor(model => model.MovieTitle)</b>
+    (@Html.DisplayFor(model => model.ReleaseYear))
+</h2>
+@Scripts.Render("~/bundles/movieDbMovie")
+<div>
+    <hr />
+    <div class="container">
+        <div class="col-md-4">
+            <img src="~/Uploads/MoviePosters/@Model.PosterPath" height='300' width='300' />
+        </div>
+
+        <div class="col-md-7 form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Plot, htmlAttributes: new { @class = " col-md-2" })
+                <div class="col-md-10" style="word-wrap:break-word">
+                    @Html.DisplayFor(model => model.Plot)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ActorIds, htmlAttributes: new { @class = " col-md-2" })
+                <div class="col-md-10" style="word-wrap:break-word">
+                    @Html.DisplayActors(Model.Actors)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProducerIds, htmlAttributes: new { @class = "col-md-2" })
+                <div class="col-md-10" style="word-wrap:break-word">
+                    @Html.DisplayProducer(Model.Producer)
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<br />
+<p>
+    @Html.ActionLink("Edit", "CreateEditMovie", new { movieId = Model.MovieId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
