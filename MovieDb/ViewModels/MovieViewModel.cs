@@ -14,6 +14,7 @@ namespace MovieDb.ViewModels
         public HttpPostedFileBase Poster { get; set; }
         public string PosterPath { get; set; }
 
+        [Display(Name = "Title")]
         [Required(ErrorMessage = "Please enter the title of the movie")]
         public string MovieTitle { get; set; }
 
