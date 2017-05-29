@@ -1,9 +1,12 @@
-﻿using MovieDb.DataAccess;
+﻿using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
+using MovieDb.DataAccess;
 using MovieDb.Repository.Implementation;
 using MovieDb.Repository.Interfaces;
 using MovieDb.ViewModels;
 using System.Linq;
 using System.Web.Mvc;
+using System;
 
 namespace MovieDb.Controllers
 {
@@ -15,22 +18,11 @@ namespace MovieDb.Controllers
             this._producerRepository = new ProducerRepository();
         }
 
-        public JsonResult GetProducers(string text)
+        #region GET
+        public ActionResult Index()
         {
-            var producers = _producerRepository.GetAllQueryable().Select(x => new ProducerViewModel
-            {
-                Name = x.Name,
-                RowId = x.RowId
-            });
-
-            if (!string.IsNullOrEmpty(text))
-            {
-                producers = producers.Where(x => x.Name.Contains(text));
-            }
-
-            return Json(producers, JsonRequestBehavior.AllowGet);
+            return View();
         }
-
 
         public ActionResult CreateEdit(int? producerId)
         {
@@ -56,7 +48,6 @@ namespace MovieDb.Controllers
 
             return View(viewModel);
         }
-
 
         [HttpGet]
         public ActionResult CreateEditProducer(int? producerId)
@@ -84,6 +75,48 @@ namespace MovieDb.Controllers
             }
         }
 
+        public JsonResult GetProducers(string text)
+        {
+            var producers = _producerRepository.GetAllQueryable().Select(x => new ProducerViewModel
+            {
+                Name = x.Name,
+                RowId = x.RowId
+            });
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                producers = producers.Where(x => x.Name.Contains(text));
+            }
+
+            return Json(producers, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult QueryLatestProducers([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+                var producers = _producerRepository.GetAllQueryable().OrderByDescending(x => x.RowId).ToList();
+                var viewModel = from m in producers
+                                select new ProducerViewModel
+                                {
+                                    RowId = m.RowId,
+                                    Name = m.Name,
+                                    Bio = m.Bio,
+                                    DateOfBirth = m.DateOfBirth,
+                                    Sex = m.Sex
+                                };
+
+                return Json(viewModel.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        #endregion
+
+        #region POST
         [HttpPost]
         public ActionResult CreateEditProducer(ProducerViewModel viewModel)
         {
@@ -107,6 +140,6 @@ namespace MovieDb.Controllers
                 return PartialView("_CreateEditProducer", viewModel);
             }
         }
-
+        #endregion
     }
 }

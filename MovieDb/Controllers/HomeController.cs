@@ -25,11 +25,12 @@ namespace MovieDb.Controllers
             this._actorRepository = new ActorRepository();
             this._actorMovieRelationshipRepository = new ActorMovieRelationshipRepository();
         }
+
+        #region GET
         public ActionResult Index()
         {
             return RedirectToAction("MovieListing");
         }
-
 
         public ActionResult MovieListing()
         {
@@ -128,8 +129,9 @@ namespace MovieDb.Controllers
             return View(viewModel);
 
         }
+        #endregion
 
-
+        #region POST
         [HttpPost]
         public ActionResult CreateEditMovie(MovieViewModel viewModel)
         {
@@ -195,17 +197,18 @@ namespace MovieDb.Controllers
 
         }
 
-
         public ActionResult SaveImage(IEnumerable<HttpPostedFileBase> files, string fileName)
         {
-            // The Name of the Upload component is "files"
+            var subPath = "~/Uploads/MoviePosters";
+
+            if (!System.IO.Directory.Exists(Server.MapPath(subPath)))
+                System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
+
             if (files != null)
             {
                 foreach (var file in files)
                 {
-                    // Some browsers send file names with full path.
-                    // We are only interested in the file name.
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Uploads/MoviePosters"), fileName);
+                    string path = System.IO.Path.Combine(Server.MapPath(subPath), fileName);
                     // file is uploaded
                     file.SaveAs(path);
 
@@ -240,5 +243,6 @@ namespace MovieDb.Controllers
             // Return an empty string to signify success
             return Content("");
         }
+        #endregion
     }
 }

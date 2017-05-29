@@ -13,6 +13,7 @@ namespace MovieDb.ViewModels
         public string Name { get; set; }
         public string Bio { get; set; }
         [Required(ErrorMessage = "Please select the date of birth of the producer")]
+        [Display(Name = "Date Of Birth")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateOfBirth { get; set; }
         [Required(ErrorMessage = "Please select the sex of the producer")]

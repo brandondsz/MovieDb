@@ -13,11 +13,6 @@ function onMovieSelect(e) {
 //#endregion 
 
 //#region CreateEditMovie
-$(document).ready(function () {
-   
-
-});
-
 function onMovieSave(e) {
     window.location = $("#DisplayMovieUrl").val() + "?movieId=" + e.movieId;    
 }
@@ -41,28 +36,31 @@ function addNewProducer(id) {
         type: "GET",
         url: $("#CreateEditProducerPath").val(),
         dataType: "html",
-        //data: data,
         cache: false,
         success: function (result) {
             ShowCustomModal("Create Producer", result);
         }
     });
 }
-function OnModalPostSuccess(data) {        
+
+function onActorPostSuccess(data) {
     if (data !== null && typeof data === "object" && data.success !== undefined && data.success === true) {
         HideCustomModal();
+        //Prepopulate the newly added actor
+        var multiSelect = $("#ActorIds").data("kendoMultiSelect");
+        var selected = multiSelect.value();
+        var res = $.merge($.merge([], selected), [data.actorId]);
+        multiSelect.value(res);
     }
 }
 
-function OnActorPostSuccess(data) {
+function onProducerPostSuccess(data) {
     if (data !== null && typeof data === "object" && data.success !== undefined && data.success === true) {
         HideCustomModal();
-    }
-}
-
-function OnProducerPostSuccess(data) {
-    if (data !== null && typeof data === "object" && data.success !== undefined && data.success === true) {
-        HideCustomModal();
+        var multiSelect = $("#ProducerIds").data("kendoMultiSelect");
+        var selected = multiSelect.value();
+        var res = $.merge($.merge([], selected), [data.producerId]);
+        multiSelect.value(res);
     }
 }
 

@@ -4,7 +4,7 @@
 {
     OnBegin = "return validateForm('#createEditProducer')",
     InsertionMode = InsertionMode.Replace,
-    OnSuccess = "OnProducerPostSuccess"
+    OnSuccess = "onProducerPostSuccess"
 }, new { id = "createEditProducer" }))
 {
     @Html.AntiForgeryToken()

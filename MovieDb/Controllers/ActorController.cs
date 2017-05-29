@@ -1,7 +1,10 @@
-﻿using MovieDb.DataAccess;
+﻿using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
+using MovieDb.DataAccess;
 using MovieDb.Repository.Implementation;
 using MovieDb.Repository.Interfaces;
 using MovieDb.ViewModels;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -15,6 +18,7 @@ namespace MovieDb.Controllers
             this._actorRepository = new ActorRepository();
         }
 
+        #region GET
         public JsonResult GetActors(string text)
         {
             var actors = _actorRepository.GetAllQueryable().Select(x => new ActorViewModel
@@ -56,6 +60,11 @@ namespace MovieDb.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult CreateEditActor(int? actorId)
         {
@@ -82,6 +91,34 @@ namespace MovieDb.Controllers
             }
         }
 
+        public ActionResult QueryLatestActors([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+                //Hack: Order by the most recently added to a movie(this is not proper, need to use created/modified datetime instead)
+                var actors = _actorRepository.GetAllQueryable().OrderByDescending(x => x.ActorMovieRelationships.Max(y => y.RowId)).ToList();
+                var viewModel = from m in actors
+                                select new ActorViewModel
+                                {
+                                    RowId = m.RowId,
+                                    Name = m.Name,
+                                    Bio = m.Bio,
+                                    DateOfBirth = m.DateOfBirth,
+                                    Sex = m.Sex
+                                };
+
+                return Json(viewModel.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        #endregion
+
+        #region POST
         [HttpPost]
         public ActionResult CreateEditActor(ActorViewModel viewModel)
         {
@@ -105,6 +142,7 @@ namespace MovieDb.Controllers
                 return PartialView("_CreateEditActor", viewModel);
             }
         }
+        #region
 
     }
 }

@@ -13,9 +13,8 @@ namespace MovieDb
                         
                         );
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*")
-                        .Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval")
+                .Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -31,8 +30,6 @@ namespace MovieDb
                 .Include("~/Scripts/kendo/2017.1.223/kendo.all.min.js")
                 .Include("~/Scripts/kendo/2017.1.223/kendo.aspnetmvc.min.js")
                 .Include("~/Scripts/kendo/2017.1.223/jszip.min.js")
-                //.Include("~/Scripts/pako.min.js")
-                // .Include("~/Scripts/pako_deflate.js")
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/errorhandler").Include(
