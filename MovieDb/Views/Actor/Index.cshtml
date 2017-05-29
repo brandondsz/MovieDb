@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Popular Actors</h2>
+@Html.Hidden("DisplayActorUrl", Url.Action("DisplayActor", "Actor"))
+@Scripts.Render("~/bundles/movieDbActor")
+
+
+<hr />
+@(Html.Kendo().Grid<MovieDb.ViewModels.ActorViewModel>()
+    .Name("grid")
+    .ToolBar(toolbar =>
+                        {
+                            toolbar.Template(@<text>
+                                <b>Search for actors:</b>
+                                @(Html.Kendo().AutoComplete()
+                                          .Name("actorSearch")
+                                          .DataTextField("Name")
+                                          .Filter("contains")
+                                          .MinLength(2)
+                                          .DataSource(source =>
+                                          {
+                                              source.Read(read =>
+                                              {
+                                                  read.Action("GetActors", "Actor")
+                                                      .Data("onAdditionalData");
+
+                                              })
+                                              .ServerFiltering(true);
+                                          }).Events(e => e.Select("onActorSelect"))
+                                )
+                                @Html.ActionLink("Create New", "CreateEdit", "Actor", new { @class = "btn btn-default" })
+
+                            </text>);
+                        })
+    .HtmlAttributes(new { style = "height:400px;" })
+    .Columns(columns =>
+    {
+        columns.Bound(e => e.Name).Width(200);
+        columns.Bound(e => e.Sex).Width(50);
+        columns.Bound(e => e.DateOfBirth).Width(150);
+        columns.Bound(e => e.Bio);
+        
+        
+    })
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("QueryLatestActors", "Actor"))
+            .Model(m=>m.Id(c=>c.RowId))
+        )
+            .Scrollable().Pageable(p => p.Refresh(true)
+                                        .PageSizes(true)
+                                .ButtonCount(5))
+            .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single)
+            .Type(GridSelectionType.Row))
+            .Events(events => events
+                    .Change("onActorGridChange")
+                    )
+                )
+
+
