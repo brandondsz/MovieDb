@@ -1,17 +1,16 @@
-﻿using MovieDb.Repository.Interfaces;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using MovieDb.DataAccess;
+using MovieDb.Helpers;
 using MovieDb.Repository.Implementation;
+using MovieDb.Repository.Interfaces;
 using MovieDb.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MovieDb.DataAccess;
-using System.Data.Entity;
-using System.IO;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using MovieDb.Helpers;
 
 namespace MovieDb.Controllers
 {
@@ -28,17 +27,6 @@ namespace MovieDb.Controllers
         }
         public ActionResult Index()
         {
-            //todo remove this and ef
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EntityContext>());
-
-            //_actorRepository.Insert(new Actor()
-            //{
-            //    Name = "brandon",
-            //    Bio = "idk",
-            //    Sex = 'm',
-            //    DateOfBirth = new DateTime(1993, 8, 28)
-            //});
-            //_actorRepository.Save();
             return RedirectToAction("MovieListing");
         }
 
@@ -52,7 +40,7 @@ namespace MovieDb.Controllers
         {
             try
             {
-                var movies = _movieRepository.GetAll();
+                var movies = _movieRepository.GetAllQueryable().OrderByDescending(x => x.RowId).ToList();
                 var viewModel = from m in movies
                                 select new MovieListViewModel
                                 {
@@ -74,9 +62,8 @@ namespace MovieDb.Controllers
         }
 
         public JsonResult GetMovies(string text)
-        {//TODO make queryable
+        {
             var movies = _movieRepository.GetAllQueryable();
-
 
             var viewModel = from m in movies
                             select new SelectListItem

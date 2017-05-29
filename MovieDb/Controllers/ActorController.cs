@@ -2,10 +2,7 @@
 using MovieDb.Repository.Implementation;
 using MovieDb.Repository.Interfaces;
 using MovieDb.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MovieDb.Controllers
@@ -20,7 +17,7 @@ namespace MovieDb.Controllers
 
         public JsonResult GetActors(string text)
         {
-            var actors = _actorRepository.GetAll().Select(x => new ActorViewModel
+            var actors = _actorRepository.GetAllQueryable().Select(x => new ActorViewModel
             {
                 Name = x.Name,
                 RowId = x.RowId

@@ -3,7 +3,7 @@
     ViewBag.Title = "CreateEdit";
 }
 
-<h2>CreateEdit</h2>
+<h2>Create or Edit a producer</h2>
 @Scripts.Render("~/bundles/movieDbProducer")
 @Html.Hidden("DisplayProducerUrl",Url.Action("DisplayProducer","Producer"))
 @{Html.RenderAction("CreateEditProducer", "Producer", new { producerId = ViewBag.ProducerId});}
