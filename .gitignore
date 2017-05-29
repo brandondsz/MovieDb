@@ -7,6 +7,14 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+/MovieDb/bin/*
+/MovieDb.DataAccess/bin/*
+/MovieDb.Models/bin/*
+/MovieDb.Repository/bin/*
+/MovieDb/obj/*
+/MovieDb.DataAccess/obj/*
+/MovieDb.Models/obj/*
+/MovieDb.Repository/obj/*
 
 # Windows Installer files
 *.cab
