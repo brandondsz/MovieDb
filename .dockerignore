@@ -1,0 +1,12 @@
+.git
+.gitignore
+.gitattributes
+*.suo
+*.user
+**/bin/
+**/obj/
+docker-compose*.yml
+Dockerfile
+.dockerignore
+README.md
+LICENSE

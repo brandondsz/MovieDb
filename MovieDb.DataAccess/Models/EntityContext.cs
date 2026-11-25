@@ -10,8 +10,16 @@ namespace MovieDb.DataAccess
     public class EntityContext : DbContext
     {
         public EntityContext()
-            : base("name=DbConnectionString")
+            : base(GetConnectionString())
         {
+        }
+
+        private static string GetConnectionString()
+        {
+            var envConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            return string.IsNullOrWhiteSpace(envConnectionString)
+                ? "name=DbConnectionString"
+                : envConnectionString;
         }
 
         
